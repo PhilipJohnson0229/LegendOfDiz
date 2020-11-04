@@ -11,7 +11,11 @@ namespace LOD
         public GameObject modelPrefab;
         public bool isUnarmed;
 
-        [Header("One Handed Attacks")]
+        [Header("Idle Animations")]
+        public string right_hand_idle;
+        public string left_hand_idle;
+
+        [Header("Attack Animations")]
         public string oneHandedLightAttack1;
         public string oneHandedLightAttack2;
         public string oneHandedHeavyAttack1;
