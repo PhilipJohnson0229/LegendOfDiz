@@ -16,8 +16,8 @@ namespace LOD
         public WeaponItem[] weaponInRightHandSlots = new WeaponItem[1];
         public WeaponItem[] weaponInLeftHandSlots = new WeaponItem[2];
 
-        public int currentRightWeaponIndex = 0;
-        public int currentLeftWeaponIndex = 0;
+        public int currentRightWeaponIndex = -1;
+        public int currentLeftWeaponIndex = -1;
 
         public void Awake()
         {
@@ -26,10 +26,8 @@ namespace LOD
 
         private void Start()
         {
-            rightWeapon = weaponInRightHandSlots[currentRightWeaponIndex];
-            leftWeapon = weaponInLeftHandSlots[currentLeftWeaponIndex];
-            weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
-            weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
+            rightWeapon = unarmedWeapon;
+            leftWeapon = unarmedWeapon;
         }
 
         public void ChangeRightWeapon() 
@@ -63,6 +61,36 @@ namespace LOD
             }
         }
 
+        public void ChangeLeftWeapon()
+        {
+            currentLeftWeaponIndex = currentLeftWeaponIndex + 1;
+
+            if (currentLeftWeaponIndex == 0 && weaponInLeftHandSlots[0] != null)
+            {
+                rightWeapon = weaponInLeftHandSlots[currentLeftWeaponIndex];
+                weaponSlotManager.LoadWeaponOnSlot(weaponInLeftHandSlots[currentLeftWeaponIndex], false);
+            }
+            else if (currentLeftWeaponIndex == 0 && weaponInLeftHandSlots[0] == null)
+            {
+                currentLeftWeaponIndex = currentLeftWeaponIndex + 1;
+            }
+            else if (currentLeftWeaponIndex == 1 && weaponInLeftHandSlots[1] != null)
+            {
+                leftWeapon = weaponInLeftHandSlots[currentLeftWeaponIndex];
+                weaponSlotManager.LoadWeaponOnSlot(weaponInLeftHandSlots[currentLeftWeaponIndex], false);
+            }
+            else
+            {
+                currentLeftWeaponIndex = currentLeftWeaponIndex + 1;
+            }
+
+            if (currentLeftWeaponIndex > weaponInLeftHandSlots.Length - 1)
+            {
+                currentLeftWeaponIndex = -1;
+                leftWeapon = unarmedWeapon;
+                weaponSlotManager.LoadWeaponOnSlot(unarmedWeapon, false);
+            }
+        }
 
     }
 

@@ -15,6 +15,10 @@ namespace LOD
         public bool b_input;
         public bool rb_input;
         public bool rt_input;
+        public bool d_Pad_Up;
+        public bool d_Pad_Down;
+        public bool d_Pad_Left;
+        public bool d_Pad_Right;
 
         public bool rollFlag;
         public bool sprintFlag;
@@ -58,6 +62,7 @@ namespace LOD
             MoveInput(delta);
             HandleRollInput(delta);
             HandleAttackInput(delta);
+            HandleQuickSlotInput();
         }
 
         public void MoveInput(float delta) 
@@ -121,6 +126,22 @@ namespace LOD
             if (rt_input)
             {
                 playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+            }
+        }
+
+        private void HandleQuickSlotInput() 
+        {
+            inputActions.PlayerActions.DPadRight.performed += i => d_Pad_Right = true;
+            inputActions.PlayerActions.DPadLeft.performed += i => d_Pad_Left = true;
+            inputActions.PlayerActions.DPadUp.performed += i => d_Pad_Up = true;
+            inputActions.PlayerActions.DPadDown.performed += i => d_Pad_Down = true;
+            if (d_Pad_Right)
+            {
+                playerInventory.ChangeRightWeapon();
+            }
+            else if (d_Pad_Left) 
+            {
+                playerInventory.ChangeLeftWeapon();
             }
         }
     }
