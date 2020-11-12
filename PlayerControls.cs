@@ -310,134 +310,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""D-Pad"",
-            ""id"": ""28fae9b9-2591-42c6-9f65-2ba4c58b68e6"",
-            ""actions"": [
-                {
-                    ""name"": ""D-Pad Up"",
-                    ""type"": ""Button"",
-                    ""id"": ""957ddaf9-c116-4479-a1f7-36c82fa72a03"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""D-Pad Down"",
-                    ""type"": ""Button"",
-                    ""id"": ""4f99a608-f843-4e26-aac6-961944f98462"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""D-Pad Left"",
-                    ""type"": ""Button"",
-                    ""id"": ""a4a0e796-d534-4379-9e30-a1cc4f4f05e1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""D-Pad Right"",
-                    ""type"": ""Button"",
-                    ""id"": ""7c9b61ba-e844-4e88-87c6-57b04cb016f4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""0732a393-2731-43e4-8ece-f3eee02a7307"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""D-Pad Up"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""df04e17c-a90d-477b-858d-e68a103a047a"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""D-Pad Up"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""156c867e-b3ea-403c-a741-37396a3cd88b"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""D-Pad Down"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5e53b301-7ecf-4940-99a6-8928c11c54cb"",
-                    ""path"": ""<Gamepad>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""D-Pad Down"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""01155f63-6b9f-411e-9bbf-107966b7e06c"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""D-Pad Left"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""de22b1c8-016c-4760-9d06-c97d19dcfb1c"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""D-Pad Left"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e390b0bf-05e3-47b8-b4bc-b0e4e5a18325"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""D-Pad Right"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f406d985-00d4-4d76-9d0b-d09425121e36"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""D-Pad Right"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
         }
     ],
     ""controlSchemes"": []
@@ -455,12 +327,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerActions_DPadUp = m_PlayerActions.FindAction("D-Pad Up", throwIfNotFound: true);
         m_PlayerActions_DPadDown = m_PlayerActions.FindAction("D-Pad Down", throwIfNotFound: true);
         m_PlayerActions_DPadLeft = m_PlayerActions.FindAction("D-Pad Left", throwIfNotFound: true);
-        // D-Pad
-        m_DPad = asset.FindActionMap("D-Pad", throwIfNotFound: true);
-        m_DPad_DPadUp = m_DPad.FindAction("D-Pad Up", throwIfNotFound: true);
-        m_DPad_DPadDown = m_DPad.FindAction("D-Pad Down", throwIfNotFound: true);
-        m_DPad_DPadLeft = m_DPad.FindAction("D-Pad Left", throwIfNotFound: true);
-        m_DPad_DPadRight = m_DPad.FindAction("D-Pad Right", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -628,63 +494,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public PlayerActionsActions @PlayerActions => new PlayerActionsActions(this);
-
-    // D-Pad
-    private readonly InputActionMap m_DPad;
-    private IDPadActions m_DPadActionsCallbackInterface;
-    private readonly InputAction m_DPad_DPadUp;
-    private readonly InputAction m_DPad_DPadDown;
-    private readonly InputAction m_DPad_DPadLeft;
-    private readonly InputAction m_DPad_DPadRight;
-    public struct DPadActions
-    {
-        private @PlayerControls m_Wrapper;
-        public DPadActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @DPadUp => m_Wrapper.m_DPad_DPadUp;
-        public InputAction @DPadDown => m_Wrapper.m_DPad_DPadDown;
-        public InputAction @DPadLeft => m_Wrapper.m_DPad_DPadLeft;
-        public InputAction @DPadRight => m_Wrapper.m_DPad_DPadRight;
-        public InputActionMap Get() { return m_Wrapper.m_DPad; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(DPadActions set) { return set.Get(); }
-        public void SetCallbacks(IDPadActions instance)
-        {
-            if (m_Wrapper.m_DPadActionsCallbackInterface != null)
-            {
-                @DPadUp.started -= m_Wrapper.m_DPadActionsCallbackInterface.OnDPadUp;
-                @DPadUp.performed -= m_Wrapper.m_DPadActionsCallbackInterface.OnDPadUp;
-                @DPadUp.canceled -= m_Wrapper.m_DPadActionsCallbackInterface.OnDPadUp;
-                @DPadDown.started -= m_Wrapper.m_DPadActionsCallbackInterface.OnDPadDown;
-                @DPadDown.performed -= m_Wrapper.m_DPadActionsCallbackInterface.OnDPadDown;
-                @DPadDown.canceled -= m_Wrapper.m_DPadActionsCallbackInterface.OnDPadDown;
-                @DPadLeft.started -= m_Wrapper.m_DPadActionsCallbackInterface.OnDPadLeft;
-                @DPadLeft.performed -= m_Wrapper.m_DPadActionsCallbackInterface.OnDPadLeft;
-                @DPadLeft.canceled -= m_Wrapper.m_DPadActionsCallbackInterface.OnDPadLeft;
-                @DPadRight.started -= m_Wrapper.m_DPadActionsCallbackInterface.OnDPadRight;
-                @DPadRight.performed -= m_Wrapper.m_DPadActionsCallbackInterface.OnDPadRight;
-                @DPadRight.canceled -= m_Wrapper.m_DPadActionsCallbackInterface.OnDPadRight;
-            }
-            m_Wrapper.m_DPadActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @DPadUp.started += instance.OnDPadUp;
-                @DPadUp.performed += instance.OnDPadUp;
-                @DPadUp.canceled += instance.OnDPadUp;
-                @DPadDown.started += instance.OnDPadDown;
-                @DPadDown.performed += instance.OnDPadDown;
-                @DPadDown.canceled += instance.OnDPadDown;
-                @DPadLeft.started += instance.OnDPadLeft;
-                @DPadLeft.performed += instance.OnDPadLeft;
-                @DPadLeft.canceled += instance.OnDPadLeft;
-                @DPadRight.started += instance.OnDPadRight;
-                @DPadRight.performed += instance.OnDPadRight;
-                @DPadRight.canceled += instance.OnDPadRight;
-            }
-        }
-    }
-    public DPadActions @DPad => new DPadActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -699,12 +508,5 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnDPadUp(InputAction.CallbackContext context);
         void OnDPadDown(InputAction.CallbackContext context);
         void OnDPadLeft(InputAction.CallbackContext context);
-    }
-    public interface IDPadActions
-    {
-        void OnDPadUp(InputAction.CallbackContext context);
-        void OnDPadDown(InputAction.CallbackContext context);
-        void OnDPadLeft(InputAction.CallbackContext context);
-        void OnDPadRight(InputAction.CallbackContext context);
     }
 }
