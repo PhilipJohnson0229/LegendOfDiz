@@ -14,9 +14,12 @@ namespace LOD
 
         Animator animator;
 
+        QuickSlotsUI quickSlotUI;
+
         private void Awake()
         {
             animator = GetComponent<Animator>();
+            quickSlotUI = FindObjectOfType<QuickSlotsUI>();
 
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
             foreach (WeaponHolderSlot weaponSlot in weaponHolderSlots)
@@ -39,6 +42,7 @@ namespace LOD
             {
                 leftHandSlot.LoadWeaponModel(weaponItem);
                 LoadLeftDamageCollider();
+                quickSlotUI.UpdateWeaponQuicklostsUI(true, weaponItem);
 
                 #region Handle left hand idle animations
                 if (weaponItem != null)
@@ -55,6 +59,7 @@ namespace LOD
             {
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightDamageCollider();
+                quickSlotUI.UpdateWeaponQuicklostsUI(false, weaponItem);
 
                 #region Handle right hand idle animations
                 if (weaponItem != null)
@@ -96,7 +101,7 @@ namespace LOD
 
         public void CloseRightDamageCollider()
         {
-            rightDamageCollider.DisableDamageCollider();
+            rightDamageCollider.DisableDamageCollider(); 
         }
 
         #endregion
