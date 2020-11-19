@@ -35,8 +35,7 @@ namespace LOD
             }
         }
 
-        #region Handle Weapon Damage Collider
-        public void LoadWeaponOnSlot(WeaponItem weaponItem, bool isLeft) 
+        public void LoadWeaponOnSlot(WeaponItem weaponItem, bool isLeft)
         {
             if (isLeft)
             {
@@ -49,13 +48,13 @@ namespace LOD
                 {
                     animator.CrossFade(weaponItem.left_hand_idle, 0.2f);
                 }
-                else 
+                else
                 {
                     animator.CrossFade("Left Arm Empty", 0.2f);
                 }
                 #endregion
             }
-            else 
+            else
             {
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightDamageCollider();
@@ -73,6 +72,8 @@ namespace LOD
                 #endregion
             }
         }
+
+        #region Handle Weapon Damage Collider
 
         public void LoadLeftDamageCollider() 
         {
@@ -105,6 +106,12 @@ namespace LOD
         }
 
         #endregion
+
+        public void DrainStaminaLightAttack() 
+        {
+
+        }
+
     }
 
 }

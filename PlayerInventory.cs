@@ -88,7 +88,7 @@ namespace LOD
             {
                 currentLeftWeaponIndex = -1;
                 leftWeapon = unarmedWeapon;
-                weaponSlotManager.LoadWeaponOnSlot(unarmedWeapon, false);
+                weaponSlotManager.LoadWeaponOnSlot(unarmedWeapon, true);
             }
         }
 

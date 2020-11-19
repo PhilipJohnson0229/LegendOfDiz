@@ -19,6 +19,11 @@ namespace LOD
         public string oneHandedLightAttack1;
         public string oneHandedLightAttack2;
         public string oneHandedHeavyAttack1;
+
+        [Header("Stamina Costs")]
+        public int baseStamina;
+        public float lightAttackMultiplier;
+        public float heavyAttackMultiplier;
     }
 
 }
