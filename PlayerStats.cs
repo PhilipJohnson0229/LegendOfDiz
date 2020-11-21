@@ -10,7 +10,12 @@ namespace LOD
         public int maxHealth;
         public int currentHealth;
 
+        public int staminaLevel = 10;
+        public int maxStamina;
+        public int currentStamina;
+
         public HealthBar healthBar;
+        public StaminaBar staminaBar;
 
         AnimatorHandler animatorHandler;
 
@@ -22,14 +27,23 @@ namespace LOD
         void Start()
         {
             maxHealth = SetMaxHealthFromHealthLevel();
+            maxStamina = SetMaxStaminaFromStaminaLevel();
             currentHealth = maxHealth;
+            currentStamina = maxStamina;
             healthBar.SetMaxHealth(maxHealth);
+            staminaBar.SetMaxHealth(maxStamina);
         }
 
         private int SetMaxHealthFromHealthLevel() 
         {
             maxHealth = healthLevel * 10;
             return maxHealth;
+        }
+
+        private int SetMaxStaminaFromStaminaLevel()
+        {
+            maxStamina = staminaLevel * 10;
+            return maxStamina;
         }
 
         public void TakeDamage(int damage) 
@@ -43,6 +57,12 @@ namespace LOD
                 currentHealth = 0;
                 animatorHandler.PlayTargetAnimation("Death01", true);
             }
+        }
+
+        public void TakeStaminaDamage(int damage) 
+        {
+            currentStamina = currentStamina - damage;
+            staminaBar.SetCurrentStamina(currentStamina);
         }
     }
 

@@ -9,20 +9,24 @@ namespace LOD
     {
         AnimatorHandler animatorHandler;
         InputHandler inputHandler;
+        WeaponSlotManager weaponSlotManager;
         public string lastAttack;
 
         private void Awake()
         {
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
             inputHandler = GetComponent<InputHandler>();
         }
         public void HandleLightAttack(WeaponItem weapon) 
         {
+            weaponSlotManager.attackingWeapon = weapon;
             animatorHandler.PlayTargetAnimation(weapon.oneHandedLightAttack1, true);
             lastAttack = weapon.oneHandedLightAttack1;
         }
         public void HandleHeavyAttack(WeaponItem weapon) 
         {
+            weaponSlotManager.attackingWeapon = weapon;
             animatorHandler.PlayTargetAnimation(weapon.oneHandedHeavyAttack1, true);
             lastAttack = weapon.oneHandedHeavyAttack1;
         }
