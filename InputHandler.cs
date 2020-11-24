@@ -12,6 +12,7 @@ namespace LOD
         public float mouseX;
         public float mouseY;
 
+        public bool a_input;
         public bool b_input;
         public bool rb_input;
         public bool rt_input;
@@ -63,6 +64,7 @@ namespace LOD
             HandleRollInput(delta);
             HandleAttackInput(delta);
             HandleQuickSlotInput();
+            HandleInteractableInput();
         }
 
         public void MoveInput(float delta) 
@@ -144,6 +146,14 @@ namespace LOD
                 playerInventory.ChangeLeftWeapon();
             }
         }
+
+        private void HandleInteractableInput() 
+        {
+            inputActions.PlayerActions.Interact.performed += i => a_input = true;
+           
+
+        }
+
     }
 
 }

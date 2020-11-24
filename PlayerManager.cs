@@ -29,7 +29,7 @@ namespace LOD
             inputHandler = GetComponent<InputHandler>();
             anim = GetComponentInChildren<Animator>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
-         
+
         }
 
         void Update()
@@ -45,6 +45,7 @@ namespace LOD
             inputHandler.TickInput(delta);
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
+            CheckForInteractableObject();
 
             playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
         }
@@ -71,10 +72,34 @@ namespace LOD
             inputHandler.d_Pad_Up = false;
             inputHandler.d_Pad_Left = false;
             inputHandler.d_Pad_Right = false;
+            inputHandler.a_input = false;
 
-            if (isInAir) 
+            if (isInAir)
             {
                 playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
+            }
+        }
+
+        public void CheckForInteractableObject() 
+        {
+            RaycastHit hit;
+
+            if (Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit))
+            {
+                if (hit.collider.tag == "Interactable") 
+                {
+                    Interactable interactableObject = hit.collider.GetComponent<Interactable>();
+
+                    if (interactableObject != null) 
+                    {
+                        //we sill set the UI to match the interacable objects text
+                        string interactableAText = interactableObject.interactableText;
+                        if (inputHandler.a_input) 
+                        {
+                            hit.collider.GetComponent<Interactable>().Interact(this);
+                        }
+                    }
+                }
             }
         }
     }

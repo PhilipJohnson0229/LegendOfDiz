@@ -12,7 +12,7 @@ namespace LOD
         private Transform myTransform;
         private Vector3 cameraTransformPosition;
         private Vector3 cameraFollowVelocity = Vector3.zero;
-        private LayerMask ignoreLayers;
+        public LayerMask ignoreLayers;
 
         public static CameraHandler singleton;
 
