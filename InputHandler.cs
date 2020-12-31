@@ -65,6 +65,7 @@ namespace LOD
             HandleAttackInput(delta);
             HandleQuickSlotInput();
             HandleInteractableInput();
+           
         }
 
         public void MoveInput(float delta) 
@@ -150,8 +151,7 @@ namespace LOD
         private void HandleInteractableInput() 
         {
             inputActions.PlayerActions.Interact.performed += i => a_input = true;
-           
-
+            
         }
 
     }

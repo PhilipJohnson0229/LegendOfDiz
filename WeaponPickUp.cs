@@ -10,12 +10,14 @@ namespace LOD
 
         public override void Interact(PlayerManager pm)
         {
+            Debug.Log("I found an item i can pick up");
             base.Interact(pm);
             PickUpItem(pm);
         }
 
         private void PickUpItem(PlayerManager pm)
         {
+            
             PlayerInventory playerInventory;
             PlayerLocomotion playerLocomotion;
             AnimatorHandler animatorHandler;

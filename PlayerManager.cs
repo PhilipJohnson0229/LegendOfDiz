@@ -18,6 +18,7 @@ namespace LOD
         public bool isInAir;
         public bool isGrounded;
         public bool canDoCombo;
+        public bool isTryingToPickUp;
 
         private void Awake()
         {
@@ -39,7 +40,7 @@ namespace LOD
             isInteracting = anim.GetBool("IsInteracting");
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
-
+            isTryingToPickUp = inputHandler.a_input;
 
             isSprinting = inputHandler.b_input;
             inputHandler.TickInput(delta);
@@ -84,22 +85,42 @@ namespace LOD
         {
             RaycastHit hit;
 
-            if (Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit))
+            if (Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers))
             {
                 if (hit.collider.tag == "Interactable") 
                 {
+                    
                     Interactable interactableObject = hit.collider.GetComponent<Interactable>();
 
-                    if (interactableObject != null) 
+                    if (interactableObject != null)
                     {
+                        isTryingToPickUp = true;
+                        Debug.Log("An interactable has been found");
                         //we sill set the UI to match the interacable objects text
-                        string interactableAText = interactableObject.interactableText;
-                        if (inputHandler.a_input) 
+                        string interactableText = interactableObject.interactableText;
+
+                        if (inputHandler.a_input)
                         {
-                            hit.collider.GetComponent<Interactable>().Interact(this);
+                            Debug.Log("hitting pick up button");
+                            interactableObject.Interact(this);
                         }
                     }
+                    else 
+                    {
+                        isTryingToPickUp = false;
+                    }
                 }
+            }
+
+           
+        }
+
+        public void InteractWithPickUp(Interactable interactableObject) 
+        {
+            if (inputHandler.a_input)
+            {
+                Debug.Log("hitting pick up button");
+                interactableObject.Interact(this);
             }
         }
     }
