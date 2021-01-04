@@ -16,6 +16,8 @@ namespace LOD
         public bool b_input;
         public bool rb_input;
         public bool rt_input;
+        public bool jump_Input;
+
         public bool d_Pad_Up;
         public bool d_Pad_Down;
         public bool d_Pad_Left;
@@ -65,7 +67,7 @@ namespace LOD
             HandleAttackInput(delta);
             HandleQuickSlotInput();
             HandleInteractableInput();
-           
+            HandleJumpInput();
         }
 
         public void MoveInput(float delta) 
@@ -152,6 +154,12 @@ namespace LOD
         {
             inputActions.PlayerActions.Interact.performed += i => a_input = true;
             
+        }
+
+        private void HandleJumpInput()
+        {
+            inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
+
         }
 
     }

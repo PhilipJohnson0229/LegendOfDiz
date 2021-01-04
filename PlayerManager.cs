@@ -11,6 +11,10 @@ namespace LOD
         CameraHandler cameraHandler;
         PlayerLocomotion playerLocomotion;
 
+        InteractUI interactableUI;
+        public GameObject interactableUIGameobject;
+        public GameObject itemInteractableGameobject;
+
         public bool isInteracting;
 
         [Header("Player Flags")]
@@ -30,7 +34,7 @@ namespace LOD
             inputHandler = GetComponent<InputHandler>();
             anim = GetComponentInChildren<Animator>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
-
+            interactableUI = FindObjectOfType<InteractUI>();
         }
 
         void Update()
@@ -87,17 +91,19 @@ namespace LOD
 
             if (Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers))
             {
-                if (hit.collider.tag == "Interactable") 
+                if (hit.collider.tag == "Interactable")
                 {
-                    
+
                     Interactable interactableObject = hit.collider.GetComponent<Interactable>();
 
                     if (interactableObject != null)
                     {
-                        isTryingToPickUp = true;
+
                         Debug.Log("An interactable has been found");
                         //we sill set the UI to match the interacable objects text
                         string interactableText = interactableObject.interactableText;
+                        interactableUI.interactableText.text = interactableText;
+                        interactableUIGameobject.SetActive(true);
 
                         if (inputHandler.a_input)
                         {
@@ -105,24 +111,28 @@ namespace LOD
                             interactableObject.Interact(this);
                         }
                     }
-                    else 
-                    {
-                        isTryingToPickUp = false;
-                    }
+
                 }
             }
+            else 
+            {
+                if (interactableUI != false)
+                {
+                    interactableUIGameobject.SetActive(false);
+                }
+                if (itemInteractableGameobject != null && inputHandler.a_input)
+                {
+                    itemInteractableGameobject.SetActive(false);
+                    Debug.Log("getting rid of alert");
+                }
+            }
+
+
 
            
         }
 
-        public void InteractWithPickUp(Interactable interactableObject) 
-        {
-            if (inputHandler.a_input)
-            {
-                Debug.Log("hitting pick up button");
-                interactableObject.Interact(this);
-            }
-        }
+
     }
 
 }
