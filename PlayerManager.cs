@@ -42,6 +42,8 @@ namespace LOD
             float delta = Time.deltaTime;
             canDoCombo = anim.GetBool("canDoCombo");
             isInteracting = anim.GetBool("IsInteracting");
+            anim.SetBool("IsInAir", isInAir);
+
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
             isTryingToPickUp = inputHandler.a_input;
@@ -51,6 +53,7 @@ namespace LOD
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
             CheckForInteractableObject();
+            playerLocomotion.HandleJumping(); 
 
             playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
         }
@@ -78,6 +81,7 @@ namespace LOD
             inputHandler.d_Pad_Left = false;
             inputHandler.d_Pad_Right = false;
             inputHandler.a_input = false;
+            inputHandler.jump_Input = false;
 
             if (isInAir)
             {
