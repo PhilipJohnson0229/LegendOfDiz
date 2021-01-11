@@ -171,6 +171,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "d4592811-5ede-444a-a5b4-ff50dbb5cd2d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "6e7d74e1-1ea0-4302-af47-dc68cf9a7e7a",
@@ -331,6 +339,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "484df175-a389-4f00-8e69-5c5d261e48e8",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

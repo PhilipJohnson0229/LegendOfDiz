@@ -81,7 +81,8 @@ namespace LOD
             inputHandler.d_Pad_Left = false;
             inputHandler.d_Pad_Right = false;
             inputHandler.a_input = false;
-            inputHandler.jump_Input = false;
+            inputHandler.jump_input = false;
+            inputHandler.inventory_input = false;
 
             if (isInAir)
             {

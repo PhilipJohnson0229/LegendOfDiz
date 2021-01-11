@@ -249,7 +249,7 @@ namespace LOD
             if (playerManager.isInteracting) 
                 return; 
             
-            if (inputHandler.jump_Input)
+            if (inputHandler.jump_input)
             {
              
                 if (inputHandler.moveAmount > 0) 

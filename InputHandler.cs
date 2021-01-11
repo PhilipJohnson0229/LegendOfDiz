@@ -16,7 +16,8 @@ namespace LOD
         public bool b_input;
         public bool rb_input;
         public bool rt_input;
-        public bool jump_Input;
+        public bool jump_input;
+        public bool inventory_input;
 
         public bool d_Pad_Up;
         public bool d_Pad_Down;
@@ -26,12 +27,14 @@ namespace LOD
         public bool rollFlag;
         public bool sprintFlag;
         public bool comboFlag;
+        public bool inventoryFlag;
         public float rollInputTimer;
 
         PlayerControls inputActions;
         PlayerAttacker playerAttacker;
         PlayerInventory playerInventory;
         PlayerManager playerManager;
+        UIManager uiManager;
 
         Vector2 movementInput;
         Vector2 cameraInput;
@@ -41,6 +44,7 @@ namespace LOD
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
+            uiManager = FindObjectOfType<UIManager>();
         }
 
         public void OnEnable()
@@ -60,6 +64,7 @@ namespace LOD
             inputActions.Disable();
         }
 
+        //Updates every frame
         public void TickInput(float delta) 
         {
             MoveInput(delta);
@@ -68,6 +73,7 @@ namespace LOD
             HandleQuickSlotInput();
             HandleInteractableInput();
             HandleJumpInput();
+            HandleInventoryInput();
         }
 
         public void MoveInput(float delta) 
@@ -158,8 +164,25 @@ namespace LOD
 
         private void HandleJumpInput()
         {
-            inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
+            inputActions.PlayerActions.Jump.performed += i => jump_input = true;
 
+        }
+
+        private void HandleInventoryInput() 
+        {
+            inputActions.PlayerActions.Inventory.performed += i => inventory_input = true;
+            if (inventory_input)
+            {
+                inventoryFlag = !inventoryFlag;
+                if (inventoryFlag)
+                {
+                    uiManager.OpenSelectWindow();
+                }
+                else 
+                {
+                    uiManager.CloseSelectWindow();
+                }
+            }
         }
 
     }
