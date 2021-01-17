@@ -103,8 +103,6 @@ namespace LOD
 
                     if (interactableObject != null)
                     {
-
-                        Debug.Log("An interactable has been found");
                         //we sill set the UI to match the interacable objects text
                         string interactableText = interactableObject.interactableText;
                         interactableUI.interactableText.text = interactableText;
@@ -128,7 +126,6 @@ namespace LOD
                 if (itemInteractableGameobject != null && inputHandler.a_input)
                 {
                     itemInteractableGameobject.SetActive(false);
-                    Debug.Log("getting rid of alert");
                 }
             }
 
