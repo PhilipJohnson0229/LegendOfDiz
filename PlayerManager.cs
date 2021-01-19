@@ -44,36 +44,31 @@ namespace LOD
             isInteracting = anim.GetBool("IsInteracting");
             anim.SetBool("IsInAir", isInAir);
 
+            inputHandler.TickInput(delta);
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
             isTryingToPickUp = inputHandler.a_input;
-
-            isSprinting = inputHandler.b_input;
-            inputHandler.TickInput(delta);
-            playerLocomotion.HandleMovement(delta);
-            playerLocomotion.HandleRollingAndSprinting(delta);
+        
             CheckForInteractableObject();
-            playerLocomotion.HandleJumping(); 
-
-            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+            isSprinting = inputHandler.b_input;
+            //this may have to go into fixed update once i add flight mechanics for pan
+            //right now this button simply plays an animation
+            playerLocomotion.HandleJumping();
+            playerLocomotion.HandleRollingAndSprinting(delta);
         }
-
 
         private void FixedUpdate()
         {
-            float delta = Time.deltaTime;
-            if (cameraHandler != null)
-            {
-                cameraHandler.FollowTarget(delta);
-                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
-            }
+            float delta = Time.fixedDeltaTime;
+
+            playerLocomotion.HandleMovement(delta);
+            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
         }
 
         //mainly used to reset flags
         private void LateUpdate()
         {
             inputHandler.rollFlag = false;
-            inputHandler.sprintFlag = false;
             inputHandler.rb_input = false;
             inputHandler.rt_input = false;
             inputHandler.d_Pad_Down = false;
@@ -83,6 +78,14 @@ namespace LOD
             inputHandler.a_input = false;
             inputHandler.jump_input = false;
             inputHandler.inventory_input = false;
+
+            float delta = Time.deltaTime;
+
+            if (cameraHandler != null)
+            {
+                cameraHandler.FollowTarget(delta);
+                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+            }
 
             if (isInAir)
             {

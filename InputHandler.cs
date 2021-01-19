@@ -54,6 +54,12 @@ namespace LOD
                 inputActions = new PlayerControls();
                 inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
                 inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+                //These are known as input delegates
+                inputActions.PlayerActions.RB.performed += i => rb_input = true;
+                inputActions.PlayerActions.RT.performed += i => rt_input = true;
+                inputActions.PlayerActions.Interact.performed += i => a_input = true;
+                inputActions.PlayerActions.Jump.performed += i => jump_input = true;
+                inputActions.PlayerActions.Inventory.performed += i => inventory_input = true;
             }
 
             inputActions.Enable();
@@ -71,8 +77,6 @@ namespace LOD
             HandleRollInput(delta);
             HandleAttackInput(delta);
             HandleQuickSlotInput();
-            HandleInteractableInput();
-            HandleJumpInput();
             HandleInventoryInput();
         }
 
@@ -87,12 +91,12 @@ namespace LOD
 
         private void HandleRollInput(float delta)
         {
-
             b_input = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+            sprintFlag = b_input;
+
             if (b_input)
             {
                 rollInputTimer += delta;
-                sprintFlag = true;
             }
             else 
             {
@@ -108,9 +112,6 @@ namespace LOD
 
         private void HandleAttackInput(float delta) 
         {
-            inputActions.PlayerActions.RB.performed += i => rb_input = true;
-            inputActions.PlayerActions.RT.performed += i => rt_input = true;
-
             if (rb_input)
             {
                 if (playerManager.canDoCombo)
@@ -156,21 +157,8 @@ namespace LOD
             }
         }
 
-        private void HandleInteractableInput() 
-        {
-            inputActions.PlayerActions.Interact.performed += i => a_input = true;
-            
-        }
-
-        private void HandleJumpInput()
-        {
-            inputActions.PlayerActions.Jump.performed += i => jump_input = true;
-
-        }
-
         private void HandleInventoryInput() 
         {
-            inputActions.PlayerActions.Inventory.performed += i => inventory_input = true;
             if (inventory_input)
             {
                 inventoryFlag = !inventoryFlag;
